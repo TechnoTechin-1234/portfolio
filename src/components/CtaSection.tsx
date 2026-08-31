@@ -4,10 +4,14 @@ import { ArrowRight, Mail, Clock, MapPin } from 'lucide-react';
 import { STUDIO_CONTACT } from '../data/content';
 
 interface CtaSectionProps {
-  onOpenContact: () => void;
+  onOpenContact: (serviceName?: string) => void;
+  serviceLabel?: string;
 }
 
-export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenContact }) => {
+export const CtaSection: React.FC<CtaSectionProps> = ({
+  onOpenContact,
+  serviceLabel = 'New Project Inquiry',
+}) => {
   return (
     <section
       id="contact"
@@ -41,7 +45,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenContact }) => {
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               id="cta-start-conversation-btn"
-              onClick={onOpenContact}
+              onClick={() => onOpenContact(serviceLabel)}
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-white text-[#111111] text-sm font-medium tracking-wide transition-all duration-200 hover:bg-[#F0F0F0] active:scale-[0.99] cursor-pointer"
             >
               <span>Start a Conversation</span>

@@ -93,7 +93,7 @@ export const TimelineSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl md:text-[40px] font-medium text-[#111111] tracking-tight leading-tight"
+            className="text-3xl sm:text-4xl md:text-[40px] font-medium text-[#111111] dark:text-white tracking-tight leading-tight"
           >
             How we work.
           </motion.h2>

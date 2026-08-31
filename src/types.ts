@@ -38,9 +38,9 @@ export interface Testimonial {
 export interface ProjectInquiry {
   name: string;
   email: string;
+  phone: string;
   company?: string;
   service: string;
-  budgetRange: string;
   timeframe: string;
   details: string;
 }

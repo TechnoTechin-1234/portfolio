@@ -5,7 +5,7 @@ import { HeroCircuitTrace } from "./ui/TechnicalDoodles";
 import heroBgImg from "../../assets/hero_bg.jpg";
 
 interface HeroProps {
-  onOpenContact: () => void;
+  onOpenContact: (serviceName?: string) => void;
   onExploreServices: () => void;
 }
 

@@ -69,9 +69,9 @@ export const CustomCursor: React.FC = () => {
         translateY: "-50%",
         mixBlendMode: "difference",
       }}
-      animate={{ scale: isHovered ? 1.3 : 1 }}
+      animate={{ scale: isHovered ? 1.1 : 1 }}
       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      className="w-6 h-6 rounded-full bg-white fixed top-0 left-0 z-[9999] pointer-events-none"
+      className="w-4 h-4 rounded-full bg-white fixed top-0 left-0 z-[9999] pointer-events-none"
     />
   );
 };

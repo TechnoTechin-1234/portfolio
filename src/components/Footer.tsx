@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { SERVICES_DATA, STUDIO_CONTACT } from '../data/content';
+import { SERVICES_DATA, STUDIO_CONTACT, getServiceContactLabel } from '../data/content';
 
 interface FooterProps {
   onOpenContact: (serviceName?: string) => void;
@@ -25,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onNavigateService
             </p>
           </div>
           <button
-            onClick={() => onOpenContact()}
+            onClick={() => onOpenContact('General Project')}
             className="bg-white text-[#111111] px-8 md:px-10 py-3.5 md:py-4 text-xs font-semibold uppercase tracking-widest hover:bg-[#F0F0F0] transition-colors cursor-pointer"
           >
             Start a Project
@@ -41,10 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onNavigateService
               {SERVICES_DATA.map((service) => (
                 <li key={service.id}>
                   <button
-                    onClick={() => {
-                      onNavigateService(service.id);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
+                    onClick={() => onOpenContact(getServiceContactLabel(service))}
                     className="text-xs text-neutral-300 hover:text-white transition-colors text-left cursor-pointer flex items-center gap-1.5"
                   >
                     <span>{service.number} — {service.title}</span>
@@ -93,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onNavigateService
           <div>© 2026 TECHNO TECHIN. ALL RIGHTS RESERVED.</div>
           <div className="flex items-center gap-6">
             <button
-              onClick={() => onOpenContact()}
+              onClick={() => onOpenContact('New Project Inquiry')}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Client Inquiries

@@ -1,11 +1,16 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
+import { apiDevPlugin } from './vite-plugin-api';
+
+dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), apiDevPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

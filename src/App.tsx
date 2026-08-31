@@ -36,7 +36,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>(() =>
     typeof window !== 'undefined' ? getPageFromPath(window.location.pathname) : 'home'
   );
-  const [selectedContactService, setSelectedContactService] = useState('7 layer design ($300.00)');
+  const [selectedContactService, setSelectedContactService] = useState('General Project');
 
   const syncFromLocation = useCallback(() => {
     setCurrentPage(getPageFromPath(window.location.pathname));
@@ -123,8 +123,7 @@ export default function App() {
                 onOpenContact={handleOpenContact}
               />
               <VisualBreak />
-              <TestimonialsSection />
-              <CtaSection onOpenContact={() => handleOpenContact('New Project Inquiry')} />
+              <CtaSection onOpenContact={handleOpenContact} />
             </motion.div>
           )}
 
@@ -160,7 +159,7 @@ export default function App() {
 
           {currentPage === 'contact' && (
             <motion.div
-              key="contact-page"
+              key={`contact-page-${selectedContactService}`}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}

@@ -23,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentPage,
   onNavigateHome,
   onNavigateService,
+  onOpenContact,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,6 +48,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
     if (sectionId === 'home') {
       onNavigateHome();
+      return;
+    }
+    if (sectionId === 'contact') {
+      onOpenContact('General Project');
       return;
     }
     onNavigateService(sectionId);

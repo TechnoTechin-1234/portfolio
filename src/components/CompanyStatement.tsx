@@ -118,7 +118,6 @@ export const CompanyStatement: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Editorial text column */}
           <div className="lg:col-span-7 space-y-10">
             {/* Top Line Accent and Technical Mark */}
@@ -146,6 +145,14 @@ export const CompanyStatement: React.FC = () => {
               ))}
             </h2>
 
+              <div className="md:hidden lg:col-span-5 relative rounded-2xl mt-12 shadow-xl overflow-hidden lg:mt-16">
+                <img
+                  src="/about.png"
+                  alt="Techno Techin Architecture Blueprint"
+                  className="w-full h-[300px] md:h-[550px] object-cover hover:scale-102 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/5 via-transparent to-transparent pointer-events-none" />
+              </div>
             {/* Commentary paragraph fields */}
             <div className="pt-10 border-t border-[#F0F0F0] dark:border-[#222222] space-y-5">
               <RevealParagraph
@@ -173,15 +180,14 @@ export const CompanyStatement: React.FC = () => {
           </div>
 
           {/* Graphic Image Column */}
-          <div className="lg:col-span-5 relative rounded-2xl border border-neutral-200 dark:border-[#2a2a2a] shadow-xl overflow-hidden mt-8 lg:mt-0">
+          <div className="hidden md:block lg:col-span-5 relative rounded-2xl mt-12 shadow-xl overflow-hidden lg:mt-16">
             <img
-              src={statementGraphicImg}
+              src="/about.png"
               alt="Techno Techin Architecture Blueprint"
-              className="w-full h-auto object-cover hover:scale-102 transition-transform duration-500"
+              className="w-full h-[300px] md:h-[550px] object-cover hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/5 via-transparent to-transparent pointer-events-none" />
           </div>
-
         </div>
       </div>
     </section>
