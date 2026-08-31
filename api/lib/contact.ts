@@ -32,6 +32,12 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
+function normalizeEnvValue(value?: string): string | undefined {
+  const normalized = value?.trim();
+  if (!normalized) return undefined;
+  return normalized.replace(/^(['"])(.*)\1$/, '$2').trim();
+}
+
 export async function processContactSubmission(
   body: ContactPayload | string | null | undefined,
   env: ContactEnv
@@ -47,7 +53,7 @@ export async function processContactSubmission(
     return { status: 400, body: { error: 'Invalid request data.' } };
   }
 
-  const apiKey = env.RESEND_API_KEY;
+  const apiKey = normalizeEnvValue(env.RESEND_API_KEY);
   if (!apiKey) {
     return { status: 500, body: { error: 'Email service is not configured.' } };
   }
@@ -70,8 +76,12 @@ export async function processContactSubmission(
     return { status: 400, body: { error: 'Please enter a valid email address.' } };
   }
 
-  const toEmail = (env.RESEND_TO_EMAIL || 'technotechin@outlook.com').toLowerCase();
-  const fromEmail = env.RESEND_FROM_EMAIL || 'Techno Techin <onboarding@resend.dev>';
+  const toEmail = (
+    normalizeEnvValue(env.RESEND_TO_EMAIL) || 'technotechin@outlook.com'
+  ).toLowerCase();
+  const fromEmail =
+    normalizeEnvValue(env.RESEND_FROM_EMAIL) ||
+    'Techno Techin <onboarding@resend.dev>';
 
   const resend = new Resend(apiKey);
 
