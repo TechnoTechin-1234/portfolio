@@ -33,22 +33,33 @@ function escapeHtml(value: string): string {
 }
 
 export async function processContactSubmission(
-  body: ContactPayload,
+  body: ContactPayload | string | null | undefined,
   env: ContactEnv
 ): Promise<ContactResult> {
+  let payload: ContactPayload;
+
+  try {
+    payload =
+      typeof body === 'string'
+        ? (JSON.parse(body) as ContactPayload)
+        : body ?? {};
+  } catch {
+    return { status: 400, body: { error: 'Invalid request data.' } };
+  }
+
   const apiKey = env.RESEND_API_KEY;
   if (!apiKey) {
     return { status: 500, body: { error: 'Email service is not configured.' } };
   }
 
-  const name = body.name?.trim();
-  const email = body.email?.trim();
-  const phone = body.phone?.trim();
-  const company = body.company?.trim() || 'Not provided';
-  const service = body.service?.trim();
-  const price = body.price?.trim() || body.budgetRange?.trim();
-  const timeframe = body.timeframe?.trim();
-  const details = body.details?.trim();
+  const name = payload.name?.trim();
+  const email = payload.email?.trim();
+  const phone = payload.phone?.trim();
+  const company = payload.company?.trim() || 'Not provided';
+  const service = payload.service?.trim();
+  const price = payload.price?.trim() || payload.budgetRange?.trim();
+  const timeframe = payload.timeframe?.trim();
+  const details = payload.details?.trim();
 
   if (!name || !email || !phone || !service || !timeframe || !details) {
     return { status: 400, body: { error: 'Please fill in all required fields.' } };
