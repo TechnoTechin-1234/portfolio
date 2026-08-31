@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Connect, Plugin, PreviewServer, ViteDevServer } from 'vite';
-import { processContactSubmission } from './api/lib/contact';
+import { processContactSubmission } from './api/lib/contact.js';
 
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
