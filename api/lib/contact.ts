@@ -1,5 +1,3 @@
-import { Resend } from 'resend';
-
 export interface ContactPayload {
   name?: string;
   email?: string;
@@ -83,8 +81,6 @@ export async function processContactSubmission(
     normalizeEnvValue(env.RESEND_FROM_EMAIL) ||
     'Techno Techin <onboarding@resend.dev>';
 
-  const resend = new Resend(apiKey);
-
   const html = `
     <h2>New project inquiry — Techno Techin</h2>
     <p><strong>Name:</strong> ${escapeHtml(name)}</p>
@@ -99,20 +95,38 @@ export async function processContactSubmission(
   `;
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
-      to: [toEmail],
-      replyTo: email,
-      subject: `New inquiry: ${service} — ${name}`,
-      html,
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [toEmail],
+        reply_to: email,
+        subject: `New inquiry: ${service} — ${name}`,
+        html,
+      }),
     });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return { status: 500, body: { error: error.message || 'Failed to send email.' } };
+    const result = (await response.json().catch(() => ({}))) as {
+      id?: string;
+      message?: string;
+      name?: string;
+      error?: { message?: string };
+    };
+
+    if (!response.ok) {
+      const message =
+        result.message ||
+        result.error?.message ||
+        'Failed to send email through Resend.';
+      console.error('Resend error:', response.status, result);
+      return { status: 500, body: { error: message } };
     }
 
-    return { status: 200, body: { success: true, id: data?.id } };
+    return { status: 200, body: { success: true, id: result.id } };
   } catch (error) {
     console.error('Contact API error:', error);
     return { status: 500, body: { error: 'Failed to send email. Please try again later.' } };
