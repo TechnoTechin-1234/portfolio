@@ -484,3 +484,72 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     serviceCategory: "Web Architecture & Design",
   },
 ];
+
+/* =========================================================
+   POLICY DOCUMENTS
+========================================================= */
+
+export const POLICY_DOCUMENTS = {
+  terms: {
+    title: 'Terms & Conditions',
+    lastUpdated: 'August 1, 2026',
+    summary: 'Standard studio service agreement governing project engagement, intellectual property transfer, and client collaboration guidelines.',
+    sections: [
+      {
+        heading: '1. Project Scope & Authorization',
+        content: 'All freelance engagements provided by Techno Techin commence upon receipt of an agreed project scope or milestone deposit.',
+      },
+      {
+        heading: '2. Intellectual Property & Code Ownership',
+        content: 'Upon full payment of all milestone invoices, 100% full intellectual property, source code, design vector assets, and compiled software belong exclusively to the Client.',
+      },
+      {
+        heading: '3. Revisions & Collaboration',
+        content: 'Each custom service phase includes up to two (2) comprehensive revision rounds. Additional scope requests outside the initial statement will be quoted independently at our standard studio rate.',
+      },
+      {
+        heading: '4. Confidentiality & Non-Disclosure',
+        content: 'We maintain absolute confidentiality regarding your business operations, proprietary data, source code, and unreleased graphic design concepts.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    lastUpdated: 'August 1, 2026',
+    summary: 'How Techno Techin collects, respects, and protects client communication data and project assets.',
+    sections: [
+      {
+        heading: '1. Information We Collect',
+        content: 'We only collect essential project contact information (name, email address, phone number, company details, and project requirements) voluntarily submitted via our website inquiry form or project scope estimator.',
+      },
+      {
+        heading: '2. Use of Information',
+        content: 'Your contact details are strictly used to respond to your project requests, deliver invoice statements, and manage active service projects. We never sell, rent, or share client data with third-party advertisers.',
+      },
+      {
+        heading: '3. Data Retention & Security',
+        content: 'Project assets, code repositories, and communication records are securely stored on encrypted studio infrastructure. Clients may request permanent deletion of non-accounting records at any time.',
+      },
+    ],
+  },
+  refund: {
+    title: 'Refund Policy & Guarantee',
+    lastUpdated: 'August 1, 2026',
+    summary: 'Transparent, risk-free studio guarantee featuring our explicit 15-day refund policy.',
+    sections: [
+      {
+        heading: '1. 15-Day Satisfaction Guarantee',
+        content: 'We take pride in our quality execution. If within the first fifteen (15) days of project commencement or initial prototype delivery you are unsatisfied with the project progress, you are entitled to a 100% refund of your initial deposit — no hassle or complex fine print.',
+      },
+      {
+        heading: '2. Refund Request Process',
+        content: 'To initiate a refund request under our 15-day refund policy, simply email technotechin@outlook.com with your project reference and reason for cancellation. Refunds are processed back to your original payment method within 3 business days.',
+      },
+      {
+        heading: '3. Conditions After 15 Days',
+        content: 'Beyond the 15-day refund window, work already delivered or milestone approvals granted will be billed on a pro-rata basis corresponding to the completed project deliverables.',
+      },
+    ],
+  },
+};
+

@@ -15,6 +15,9 @@ import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ContactPage } from './pages/ContactPage';
+import { TermsPage } from './pages/TermsPage';
+import { PrivacyPage } from './pages/PrivacyPage';
+import { RefundPage } from './pages/RefundPage';
 
 function getPageFromPath(pathname: string): string {
   const clean = pathname.replace(/\/+$/, '') || '/';
@@ -25,6 +28,9 @@ function getPageFromPath(pathname: string): string {
 
   if (first === 'about') return 'about';
   if (first === 'contact') return 'contact';
+  if (first === 'terms') return 'terms';
+  if (first === 'privacy') return 'privacy';
+  if (first === 'refund') return 'refund';
   if (first === 'services') {
     if (segments[1]) return `services/${segments[1]}`;
     return 'services';
@@ -72,7 +78,14 @@ export default function App() {
       navigate('/');
       return;
     }
-    if (serviceId === 'about' || serviceId === 'contact' || serviceId === 'services') {
+    if (
+      serviceId === 'about' ||
+      serviceId === 'contact' ||
+      serviceId === 'services' ||
+      serviceId === 'terms' ||
+      serviceId === 'privacy' ||
+      serviceId === 'refund'
+    ) {
       navigate(`/${serviceId}`);
       return;
     }
@@ -168,6 +181,54 @@ export default function App() {
               <ContactPage
                 onNavigateHome={navigateToHome}
                 initialService={selectedContactService}
+              />
+            </motion.div>
+          )}
+
+          {currentPage === 'terms' && (
+            <motion.div
+              key="terms-page"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <TermsPage
+                onNavigateHome={navigateToHome}
+                onOpenContact={handleOpenContact}
+                onNavigatePolicy={(key) => navigateToService(key)}
+              />
+            </motion.div>
+          )}
+
+          {currentPage === 'privacy' && (
+            <motion.div
+              key="privacy-page"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <PrivacyPage
+                onNavigateHome={navigateToHome}
+                onOpenContact={handleOpenContact}
+                onNavigatePolicy={(key) => navigateToService(key)}
+              />
+            </motion.div>
+          )}
+
+          {currentPage === 'refund' && (
+            <motion.div
+              key="refund-page"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <RefundPage
+                onNavigateHome={navigateToHome}
+                onOpenContact={handleOpenContact}
+                onNavigatePolicy={(key) => navigateToService(key)}
               />
             </motion.div>
           )}

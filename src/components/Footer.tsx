@@ -86,9 +86,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onNavigateService
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 text-[11px] font-medium uppercase tracking-[0.2em] text-[#666666] gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-[11px] font-medium uppercase tracking-[0.2em] text-[#666666] gap-4">
           <div>© 2026 TECHNO TECHIN. ALL RIGHTS RESERVED.</div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <button
+              onClick={() => onNavigateService('terms')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Terms
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onNavigateService('privacy')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Privacy
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onNavigateService('refund')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Refund
+            </button>
+            <span>•</span>
             <button
               onClick={() => onOpenContact('New Project Inquiry')}
               className="hover:text-white transition-colors cursor-pointer"

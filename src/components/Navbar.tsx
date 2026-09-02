@@ -16,6 +16,9 @@ const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'services', label: 'Services' },
+  { id: 'terms', label: 'Terms' },
+  { id: 'privacy', label: 'Privacy' },
+  { id: 'refund', label: 'Refund' },
   { id: 'contact', label: 'Contact' },
 ] as const;
 
@@ -96,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          <nav id="desktop-nav-menu" className="hidden md:flex items-center space-x-8">
+          <nav id="desktop-nav-menu" className="hidden md:flex items-center space-x-5 lg:space-x-6">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
